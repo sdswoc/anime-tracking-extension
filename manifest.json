@@ -1,0 +1,14 @@
+{
+    "name": "AniTrack",
+    "version": "1.0",
+    "description": "Update AniList when episode is completed",
+    "permissions": [
+        "storage",
+        "identity",
+        "https://graphql.anilist.co/*"
+    ],
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 2
+}
