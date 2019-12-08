@@ -4,10 +4,12 @@
     "description": "Update AniList when episode is completed",
     "permissions": [
         "storage",
+        "identity",
         "https://graphql.anilist.co/*"
     ],
     "browser_action": {
         "default_popup": "popup.html"
     },
-    "manifest_version": 2
+    "manifest_version": 2,
+    "content_security_policy": "script-src 'self' 'sha256-xILwmlJpKD09e/xqunowqAsYjmF+V6JdS/5A1HxMWNg=';object-src 'self'"
 }
