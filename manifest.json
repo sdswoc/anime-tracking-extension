@@ -4,7 +4,6 @@
     "description": "Update AniList when episode is completed",
     "permissions": [
         "storage",
-        "identity",
         "https://graphql.anilist.co/*"
     ],
     "browser_action": {
