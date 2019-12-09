@@ -1,6 +1,7 @@
 {
     "name": "AniTrack",
     "version": "1.0",
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnm8VwbpGbya1skPvzm+hAbvUfO84OP/BRV7Xfi7G8aq8V4AG2uqr5OqYhqM7d6VM6OVjCv8Ff2Do7josAeeINiTvR9ve2wxV83kN6qxBF29P/AXtsq8LfRhpQeH43aWrlNxs9bp1XVyNzgyVwDz3Jk8GxmxrqmEGcijXuKsbxrh8Wi6Uc+A781A/L5iaZbKIOIIWgjJm1Mm6yDk07KEfje+/IepnTirHdWV1ktaRiROg+vL7c27Mzom6QankFWhbNA+M6C8l1HDYeBvbyRP/2cGBJDFB7cAfk9zevGNCwG5zaJE6oi2t27KEDxtwRv/FXP81FgM6hnXCKRTceVnwgQIDAQAB",
     "description": "Update AniList when episode is completed",
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnm8VwbpGbya1skPvzm+hAbvUfO84OP/BRV7Xfi7G8aq8V4AG2uqr5OqYhqM7d6VM6OVjCv8Ff2Do7josAeeINiTvR9ve2wxV83kN6qxBF29P/AXtsq8LfRhpQeH43aWrlNxs9bp1XVyNzgyVwDz3Jk8GxmxrqmEGcijXuKsbxrh8Wi6Uc+A781A/L5iaZbKIOIIWgjJm1Mm6yDk07KEfje+/IepnTirHdWV1ktaRiROg+vL7c27Mzom6QankFWhbNA+M6C8l1HDYeBvbyRP/2cGBJDFB7cAfk9zevGNCwG5zaJE6oi2t27KEDxtwRv/FXP81FgM6hnXCKRTceVnwgQIDAQAB",
     "permissions": [
