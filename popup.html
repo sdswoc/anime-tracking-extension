@@ -18,11 +18,13 @@
                         'interactive': true
                     },
                     function(url){
-                    const params = new URLSearchParams(url);
-                    var token  = params.get('access_token');
-                    chrome.storage.sync.set({code: token}, function() {
-                        console.log('Code is set to ' + token);
-                    });
+                        console.log(url);
+                        var start = url.search("=");
+                        var fin = url.search("&",start);
+                        var token = url.substring(start+1,fin);
+                        chrome.storage.sync.set({code: token}, function() {
+                            console.log('Code is set to ' + token);
+                        });
                     });
                 }
             }

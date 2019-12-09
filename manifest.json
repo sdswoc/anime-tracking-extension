@@ -11,5 +11,5 @@
         "default_popup": "popup.html"
     },
     "manifest_version": 2,
-    "content_security_policy": "script-src 'self' 'sha256-xILwmlJpKD09e/xqunowqAsYjmF+V6JdS/5A1HxMWNg=';object-src 'self'"
+    "content_security_policy": "script-src 'self' 'sha256-AYhynCyON9tIWB6o3CsbGccG/vaLtJ3zsY91Elv2S/c=';object-src 'self'"
 }
