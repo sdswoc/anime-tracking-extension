@@ -6,6 +6,17 @@ var namend = path.indexOf('/',3);
 eps = path.substring(namend+1);
 var name = path.substring(3,namend);
 
+chrome.storage.sync.set({eps_no: eps}, function() {
+    console.log('Episode number is set to ' + eps);
+});
+    
+setInterval( function (){
+    var w = document.getElementsByClassName("handle")[0].style.width;
+    chrome.storage.sync.set({anime_width: w}, function() {
+        console.log('Anime width is set to ' + w);
+    });
+} , 1000);
+
 var query = `
 query ($id: Int, $page: Int, $perPage: Int, $search: String) {
     Page (page: $page, perPage: $perPage) {
@@ -34,12 +45,13 @@ var url = 'https://graphql.anilist.co',
             variables: variables
         })
     };
-    
-var a;
+
 fetch(url, options).then((res)=>res.json())
 .then((data)=>{
     console.log(data);
     id = data.data.Page.media[0].id;
     console.log(id+" "+ eps);
+    chrome.storage.sync.set({anime_id: id}, function() {
+        console.log('Anime ID is set to ' + id);
+    });
 });
-
