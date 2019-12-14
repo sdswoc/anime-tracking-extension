@@ -6,7 +6,8 @@
     "permissions": [
         "storage",
         "identity",
-        "https://graphql.anilist.co/*"
+        "https://graphql.anilist.co/*",
+        "tabs"
     ],
     "content_scripts": [
         {
