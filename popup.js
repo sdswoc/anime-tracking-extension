@@ -1,6 +1,3 @@
-var id,eps;
-   
-    
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {req: "anime-id"}, function(response) {
         id = response.resp;
@@ -46,12 +43,10 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 });
 
 
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {req: "anime-eps"}, function(response) {
-            eps = response.resp;
-            document.getElementById("episode-no").innerHTML = response.resp;
-            console.log(response.resp);
-        });
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {req: "anime-eps"}, function(response) {
+        eps = response.resp;
+        document.getElementById("episode-no").innerHTML = response.resp;
+        console.log(response.resp);
     });
-
-console.log(id + " " + eps);
+});

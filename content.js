@@ -6,14 +6,8 @@ var name = path.substring(3,namend);
 
 /*chrome.storage.sync.set({eps_no: eps}, function() {
     console.log('Episode number is set to ' + eps);
-});
-    
-setInterval( function (){
-    var w = document.getElementsByClassName("handle")[0].style.width;
-    chrome.storage.sync.set({anime_width: w}, function() {
-        console.log('Anime width is set to ' + w);
-    });
-} , 1000);*/
+});*/
+
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
@@ -68,3 +62,15 @@ fetch(url, options).then((res)=>res.json())
             }
     });
 });
+var mutationDone = 0;
+setInterval( getWidth , 1000);
+
+function getWidth (){
+    var w = document.getElementsByClassName("handle")[0].style.width;
+    var percent = parseFloat(w);
+    console.log(percent);
+    if(percent>=90.0&&mutationDone == 0){
+        console.log("now");
+        mutationDone = 1;
+    }
+}
