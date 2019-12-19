@@ -35,6 +35,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         query ($id: Int, $search: String) {
             Media (id:$id, search: $search) {
                 id
+                title{
+                  romaji
+                }
            }
         }
         `;

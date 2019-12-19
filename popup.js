@@ -6,7 +6,7 @@ chrome.storage.local.get(['anime_id'], function(result){
     query ($id: Int) {
         Media (id: $id) {
             title  {
-                english
+                romaji
             }
             description
         }
@@ -33,7 +33,7 @@ chrome.storage.local.get(['anime_id'], function(result){
     fetch(url, options)
     .then((res)=>res.json())
     .then((data)=>{
-        var title = data.data.Media.title.english;
+        var title = data.data.Media.title.romaji;
         var desc = data.data.Media.description;
         document.getElementById("anime-title").innerHTML = title;
         document.getElementById("description").innerHTML = desc;
