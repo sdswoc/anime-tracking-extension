@@ -11,6 +11,14 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if(changeInfo.status =='complete'){
+      console.log("sending");
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {state: "url_changed"}, function(response) {
+          console.log(response.resp);
+        });
+      });
+    }
     var el = document.createElement('a');
     el.href = changeInfo.url;
     if(el.hostname=="twist.moe"&&el.pathname!="/"){
@@ -21,6 +29,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         chrome.storage.local.set({ep_no: eps}, function() {
           console.log('Episode number is set to ' + eps);
         });
+
         var name = path.substring(3,namend);
         var query = `
         query ($id: Int, $search: String) {
