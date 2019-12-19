@@ -13,7 +13,7 @@
     "content_scripts": [
         {
             "matches": [
-                "https://twist.moe/a/*"
+                "https://twist.moe/*"
             ],
             "js" : ["content.js"]
         }

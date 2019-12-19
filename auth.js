@@ -11,7 +11,7 @@ window.onload = function(){
             var start = url.search("=");
             var fin = url.search("&",start);
             var token = url.substring(start+1,fin);
-            chrome.storage.sync.set({code: token}, function() {
+            chrome.storage.local.set({code: token}, function() {
                 console.log('Code is set to ' + token);
             });
         });

@@ -11,6 +11,7 @@ chrome.runtime.onMessage.addListener(
                 function checkWidth(){
                     if(per>90.0){
                         console.log("now");
+                        mutate();
                         clearInterval(widthFunc);
                     }
                     else{
@@ -22,3 +23,57 @@ chrome.runtime.onMessage.addListener(
             }
         }
 });
+
+function mutate(){
+    chrome.storage.local.get(['anime_id','ep_no','code'], function(result){
+        var id, eps, accessToken;
+        console.log(result);
+        id = result.anime_id;
+        eps = result.ep_no;
+        accessToken = result.code;
+        var query = `
+        mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int) {
+            SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress) {
+                id
+                status
+                progress
+            }
+        }
+        `;
+        var variables = {
+            mediaId: id,
+            status: "CURRENT",
+            progress: eps
+        }
+        var url = 'https://graphql.anilist.co',
+        options = {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + accessToken,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                query: query,
+                variables: variables
+            })
+        };
+
+        fetch(url, options).then((res)=>res.json())
+        .then((data)=>console.log(data));
+        });
+
+    /*var eps;
+    chrome.storage.local.get(['ep_no'], function(result){
+        console.log(result);
+        eps = parseInt(result.ep_no);
+    });
+
+    var accessToken;
+    chrome.storage.sync.get(['code'], function(result){
+        console.log(result);
+        accessToken = result.code;
+    })*/
+
+    
+}
