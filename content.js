@@ -1,11 +1,14 @@
-var mutationDone = 0;
-setInterval( getWidth , 1000);
-function getWidth (){
-    var w = document.getElementsByClassName("handle")[0].style.width;
-    var percent = parseFloat(w);
-    console.log(percent);
-    if(percent>=90.0&&mutationDone == 0){
+var per;
+var widthFunc = setInterval(checkWidth , 1000);
+
+function checkWidth(){
+    if(per>90.0){
         console.log("now");
-        mutationDone = 1;
+        clearInterval(widthFunc);
+    }
+    else{
+        var w = document.getElementsByClassName("handle")[0].style.width;
+        per = parseFloat(w);
+        console.log(per);
     }
 }
