@@ -31,6 +31,10 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         });
 
         var name = path.substring(3,namend);
+        var len = name.length;
+        if(name.substring(len-9,len) == "nd-season"){
+          name = name.substring(0,len-9);
+        }
         var query = `
         query ($id: Int, $search: String) {
             Media (id:$id, search: $search) {
