@@ -42,6 +42,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                 title{
                   romaji
                 }
+                episodes
            }
         }
         `;
@@ -67,8 +68,10 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
         .then((data)=>{
             console.log(data);
             id = data.data.Media.id;
-            chrome.storage.local.set({anime_id: id}, function() {
+            epTotal = data.data.Media.episodes;
+            chrome.storage.local.set({anime_id: id, total_eps: epTotal}, function() {
                 console.log('Anime ID is set to ' + id);
+                console.log('Total episodes are ' + epTotal);
             });
         });
 

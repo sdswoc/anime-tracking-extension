@@ -25,12 +25,17 @@ chrome.runtime.onMessage.addListener(
 });
 
 function mutate(){
-    chrome.storage.local.get(['anime_id','ep_no','code'], function(result){
+    chrome.storage.local.get(['anime_id','ep_no','code','total_eps'], function(result){
         var id, eps, accessToken;
         console.log(result);
         id = result.anime_id;
         eps = result.ep_no;
         accessToken = result.code;
+        var stat = "CURRENT";
+        var epTotal = result.total_eps;
+        if(eps == epTotal){
+            stat = "COMPLETED";
+        }
         var query = `
         mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int) {
             SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress) {
@@ -42,7 +47,7 @@ function mutate(){
         `;
         var variables = {
             mediaId: id,
-            status: "CURRENT",
+            status: stat,
             progress: eps
         }
         var url = 'https://graphql.anilist.co',
