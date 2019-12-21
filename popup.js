@@ -46,7 +46,3 @@ chrome.storage.local.get(['ep_no'], function(result){
     eps = result.ep_no;
     document.getElementById("episode-no").innerHTML = eps;
 });
-
-
-
-
