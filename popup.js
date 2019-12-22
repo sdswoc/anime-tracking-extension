@@ -46,3 +46,25 @@ chrome.storage.local.get(['ep_no'], function(result){
     eps = result.ep_no;
     document.getElementById("episode-no").innerHTML = eps;
 });
+
+function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+      window.onload = func;
+    } else {
+      window.onload = function() {
+        if (oldonload) {
+          oldonload();
+        }
+        func();
+      }
+    }
+  }
+  addLoadEvent(makeOptionButton());
+
+  function makeOptionButton(){
+    btn = document.getElementById("options");
+    btn.onclick = function(){
+        window.open('options.html');
+    }
+  }
