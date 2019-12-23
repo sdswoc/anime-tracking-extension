@@ -1,4 +1,3 @@
-chrome.storage.local.set({percent: 90}, function() {});
 chrome.storage.local.get(['percent'], function(result){
     console.log(result);
     var per = result.percent;

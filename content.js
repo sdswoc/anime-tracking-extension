@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener(
+   chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         console.log(request);
         if (request.state == "url_changed"){
@@ -7,18 +7,22 @@ chrome.runtime.onMessage.addListener(
             vid.onloadeddata = function(){
                 var per;
                 var widthFunc = setInterval(checkWidth , 1000);
+                var reqper;
 
                 function checkWidth(){
-                    if(per>90.0){
-                        console.log("now");
-                        mutate();
-                        clearInterval(widthFunc);
-                    }
-                    else{
-                        var w = document.getElementsByClassName("handle")[0].style.width;
-                        per = parseFloat(w);
-                        console.log(per);
-                    }
+                    chrome.storage.local.get(['percent'],function(result){
+                        reqper = result.percent;
+                        if(per>reqper){
+                            console.log("now");
+                            mutate();
+                            clearInterval(widthFunc);
+                        }
+                        else{
+                            var w = document.getElementsByClassName("handle")[0].style.width;
+                            per = parseFloat(w);
+                            console.log(per);
+                        }
+                    });
                 }
             }
         }
