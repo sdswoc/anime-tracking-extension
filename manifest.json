@@ -16,6 +16,12 @@
                 "https://twist.moe/*"
             ],
             "js" : ["content.js"]
+        },
+        {
+            "matches": [
+                "https://kissanime.ru/*"
+            ],
+            "js" : ["contentKA.js"]
         }
     ],
     "background": {

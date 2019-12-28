@@ -14,6 +14,10 @@ var stream = [
   {
     host:"twist.moe",
     match:/\/.*\/.*\/.*/
+  },
+  {
+    host:"kissanime.ru",
+    match:/\/.*\/.*\/.*/
   }
 ]
 
