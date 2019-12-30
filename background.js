@@ -1,9 +1,13 @@
 chrome.runtime.onInstalled.addListener(function() {
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
       chrome.declarativeContent.onPageChanged.addRules([{
-        conditions: [new chrome.declarativeContent.PageStateMatcher({
-          pageUrl: {hostEquals: 'twist.moe'},
-        })
+        conditions: [
+          new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: {hostEquals: 'twist.moe'},
+          }),
+          new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: {hostEquals: 'kissanime.ru'},
+          })
         ],
             actions: [new chrome.declarativeContent.ShowPageAction()]
       }]);
@@ -50,51 +54,87 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
           });
 
           var name = path.substring(slash1+1,slash2);
+          
           var len = name.length;
-          if(name.substring())
-          if(name.substring(len-9,len) == "nd-season"){
+          if(name.substring(len-4,len) == "-Dub"||name.substring(len-4,len) == "-dub"){
+            name = name.substring(0,len-4);
+          }
+          if(name.substring(len-9,len) == "nd-season"||name.substring(len-9,len) == "nd-Season"){
             name = name.substring(0,len-9);
           }
-          var query = `
-          query ($id: Int, $search: String) {
-              Media (id:$id, search: $search) {
-                  id
-                  title{
-                    romaji
-                  }
-                  episodes
+          console.log(name);
+          
+          chrome.storage.local.get(['site'], function(res) {
+            if(res.site == "anilist"){
+              backAL();
             }
-          }
-          `;
-
-          var variables = {
-              search: name,
-          };
-
-          var url = 'https://graphql.anilist.co',
-              options = {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
-                      'Accept': 'application/json',
-                  },
-                  body: JSON.stringify({
-                      query: query,
-                      variables: variables
-                  })
-              };
-
-          fetch(url, options).then((res)=>res.json())
-          .then((data)=>{
-              console.log(data);
-              id = data.data.Media.id;
-              epTotal = data.data.Media.episodes;
-              chrome.storage.local.set({anime_id: id, total_eps: epTotal}, function() {
-                  console.log('Anime ID is set to ' + id);
-                  console.log('Total episodes are ' + epTotal);
-              });
+            if(res.site == "kitsu"){
+              backKitsu();
+            }
           });
-
       }
     }
+});
+
+function backAL(){
+  var query = `
+  query ($id: Int, $search: String) {
+      Media (id:$id, search: $search) {
+          id
+          title{
+            romaji
+          }
+          episodes
+    }
+  }
+  `;
+
+  var variables = {
+      search: name,
+  };
+
+  var url = 'https://graphql.anilist.co',
+      options = {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+              query: query,
+              variables: variables
+          })
+      };
+
+  fetch(url, options).then((res)=>res.json())
+  .then((data)=>{
+      console.log(data);
+      id = data.data.Media.id;
+      epTotal = data.data.Media.episodes;
+      chrome.storage.local.set({anime_id: id, total_eps: epTotal}, function() {
+          console.log('Anime ID is set to ' + id);
+          console.log('Total episodes are ' + epTotal);
+      });
+  });
+}
+
+function backKitsu(){
+  fetch('https://kitsu.io/api/edge/anime?filter[text] ='+name)
+.then(res => res.json())
+.then(data => {
+  console.log(data);
+  id = data.data.id;
+  epTotal = data.data.episodeCount;
+  chrome.storage.local.set({anime_id: id, total_eps: epTotal}, function() {
+    console.log('Anime ID is set to ' + id);
+    console.log('Total episodes are ' + epTotal);
+  });
+})
+.catch(error => console.error(error))
+}
+
+chrome.runtime.onInstalled.addListener(function (details) {
+  if (details.reason == "install") {
+    window.open("first.html");
+  }
 });

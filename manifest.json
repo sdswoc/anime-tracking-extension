@@ -25,7 +25,9 @@
         }
     ],
     "background": {
-        "scripts": ["background.js","auth.js","default.js"],
+        "scripts": [
+            "background.js",
+            "default.js"],
         "persistent": false
       },
     "page_action": {

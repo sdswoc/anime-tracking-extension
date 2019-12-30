@@ -14,7 +14,14 @@
                         reqper = result.percent;
                         if(per>reqper){
                             console.log("now");
-                            mutate();
+                            chrome.storage.local.get(['site'], function(res) {
+                                if(res.site == "anilist"){
+                                  mutateAL();
+                                }
+                                if(res.site == "kitsu"){
+                                  mutateKitsu();
+                                }
+                            });
                             clearInterval(widthFunc);
                         }
                         else{
@@ -28,7 +35,7 @@
         }
 });
 
-function mutate(){
+function mutateAL(){
     chrome.storage.local.get(['anime_id','ep_no','code','total_eps'], function(result){
         var id, eps, accessToken;
         console.log(result);
@@ -40,6 +47,7 @@ function mutate(){
         if(eps == epTotal){
             stat = "COMPLETED";
         }
+        
         var query = `
         mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int) {
             SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress) {
@@ -72,3 +80,4 @@ function mutate(){
         .then((data)=>console.log(data));
         });
 }
+
