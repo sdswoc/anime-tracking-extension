@@ -6,14 +6,14 @@
 
     <body>
         <h3>Choose your Animelist</h3>
-        <button id = "anilist" onclick="authoriseAL()">Anilist</button>
-        <button id = "kitsu" onclick="authoriseKitsu()">Kitsu</button>
+        <button id = "anilist">Anilist</button>
+        <button id = "kitsu">Kitsu</button>
 
-        <p>Username:</p><br>
-        <input type="text" id = "name" style="display: none;">
-        <p>Password:</p><br>
-        <input type="password" id = "pass" style="display: none;">
-        <input type = "button" value = "Submit" id = "btn" style="display: none;">
+        <p class="kitsupport" style="display: none;">Username:</p><br>
+        <input type="text" id = "name" style="display: none;" class="kitsupport">
+        <p class="kitsupport" style="display: none;">Password:</p><br>
+        <input type="password" id = "pass" style="display: none;" class="kitsupport">
+        <input type = "button" value = "Submit" id = "btn" style="display: none;" class="kitsupport">
         <script src = "auth.js"></script>
     </body>
 </html>

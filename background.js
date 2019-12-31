@@ -66,17 +66,17 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
           
           chrome.storage.local.get(['site'], function(res) {
             if(res.site == "anilist"){
-              backAL();
+              backAL(name);
             }
             if(res.site == "kitsu"){
-              backKitsu();
+              backKitsu(name);
             }
           });
       }
     }
 });
 
-function backAL(){
+function backAL(name){
   var query = `
   query ($id: Int, $search: String) {
       Media (id:$id, search: $search) {
@@ -118,13 +118,14 @@ function backAL(){
   });
 }
 
-function backKitsu(){
-  fetch('https://kitsu.io/api/edge/anime?filter[text] ='+name)
+function backKitsu(name){
+  console.log(name);
+  fetch('https://kitsu.io/api/edge/anime?filter[text]='+name)
 .then(res => res.json())
 .then(data => {
   console.log(data);
-  id = data.data.id;
-  epTotal = data.data.episodeCount;
+  id = data.data[0].id;
+  epTotal = data.data[0].attributes.episodeCount;
   chrome.storage.local.set({anime_id: id, total_eps: epTotal}, function() {
     console.log('Anime ID is set to ' + id);
     console.log('Total episodes are ' + epTotal);
