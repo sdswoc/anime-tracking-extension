@@ -14,7 +14,12 @@ You can track anime on Anilist or Kitsu.
 - The extension is now installed.
 - In the new tab opened choose the tracking website you want to use.
 - Enter your credentials.
+- Close this tab after credentials were entered.
 The extension will now update your Anime List whenever you complete an anime stream.
+
+# Important Information
+- The confirmation for successful authentication can be seen on the console for the login page
+- The extension has a popup, which only works when on a video stream on twist.moe and kissanime.ru
 
 ## Changing the Percentage of updation
 If you want to change when Anilist/Kitsu is updated, follow these steps:
