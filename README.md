@@ -6,9 +6,11 @@ The extension has support for streams on twist.moe and kissanime.ru.
 You can track anime on Anilist or Kitsu.
 
 ## Installation Instructions
-- Download the latest release.
+- Download the source code and unzip it.
 - Open the chrome extensions page.
-- Drag the .crx file onto the page.
+- Enable developer mode.
+- Click the load unpacked button.
+- Browse to the unpacked extension and click open folder.
 - The extension is now installed.
 - In the new tab opened choose the tracking website you want to use.
 - Enter your credentials.
