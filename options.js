@@ -11,5 +11,6 @@ document.getElementById("btn").onclick = function(){
     }
     chrome.storage.local.set({percent: per}, function() {
         console.log("Percentage for change set to " + per);
+        document.getElementById("confirm").style.display = "block";
     });
 }

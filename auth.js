@@ -15,7 +15,7 @@ document.getElementById("kitsu").onclick = function authoriseKitsu(){
          };
         
         fetch('https://kitsu.io/api/oauth/token', {
-          method: 'POST', // or 'PUT'
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -26,6 +26,7 @@ document.getElementById("kitsu").onclick = function authoriseKitsu(){
             token = data.access_token;
             chrome.storage.local.set({code: token, site: "kitsu"}, function() {
                 console.log('Code is set to ' + token);
+                document.getElementById("confirm").style.display = "block";
                 console.log('You chose kitsu!')
             });
         })
@@ -35,6 +36,7 @@ document.getElementById("kitsu").onclick = function authoriseKitsu(){
     }
 }
 document.getElementById("anilist").onclick = function authoriseAL(){
+    document.getElementById("wait").style.display = "block";
     chrome.identity.launchWebAuthFlow(
     {
         'url': 'https://anilist.co/api/v2/oauth/authorize?client_id=2636&response_type=token',
@@ -47,6 +49,8 @@ document.getElementById("anilist").onclick = function authoriseAL(){
         var token = url.substring(start+1,fin);
         chrome.storage.local.set({code: token, site: "anilist"}, function() {
             console.log('Code is set to ' + token);
+            document.getElementById("wait").style.display = "none";
+            document.getElementById("confirm").style.display = "block";
             console.log('You chose anilist!')
         });
     });
