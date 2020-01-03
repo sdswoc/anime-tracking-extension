@@ -19,6 +19,7 @@ The extension will now update your Anime List whenever you complete an anime str
 
 # Important Information
 - The confirmation for successful authentication can be seen on the console for the login page
+- If you choose Anilist, wait for some time for the login window to open.
 - The extension has a popup, which only works when on a video stream on twist.moe and kissanime.ru
 
 ## Changing the Percentage of updation
